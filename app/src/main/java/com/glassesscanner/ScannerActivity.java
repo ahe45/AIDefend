@@ -608,7 +608,7 @@ public final class ScannerActivity extends AppCompatActivity {
                 ? R.string.background_battery_complete : R.string.background_battery_needed));
         android.os.PowerManager power = getSystemService(android.os.PowerManager.class);
         findViewById(R.id.background_power_state).setVisibility(power != null && power.isPowerSaveMode() ? View.VISIBLE : View.GONE);
-        buttonText(R.id.manage_targets, "탐색 대상 관리 · 기본 " + DeviceCatalog.ENTRIES.size() + "개 항목");
+        buttonText(R.id.manage_targets, "탐색 대상 관리 · 기본 " + new SavedTargets(this).builtins().size() + "개 항목");
         buttonText(R.id.default_duration, "BLE / 통합 관측 시간 · " + ScanPreferences.DURATION_LABELS[preferences.duration()]);
         buttonText(R.id.retention, "이력 보관 · 최근 " + preferences.retention() + "회");
         buttonText(R.id.theme, "화면 테마 · " + themeNames()[Math.max(0, Math.min(2, preferences.theme()))]);

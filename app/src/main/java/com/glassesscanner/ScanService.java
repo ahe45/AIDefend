@@ -581,7 +581,7 @@ public final class ScanService extends Service implements RadioScanner.Listener 
         List<GlassesMatcher.Match> matches = signal.source() == RadioScanner.Mode.WIFI
                 ? GlassesMatcher.classifyWifi(signal.name())
                 : GlassesMatcher.classify(signal.name(), signal.companies(),
-                        signal.advertisedUuids(), signal.serviceDataKeys());
+                        signal.advertisedUuids(), signal.serviceDataKeys(), targets.deletedBuiltins());
         if (signal.name() != null && targets.names().stream().anyMatch(signal.name().trim()::equalsIgnoreCase)) {
             matches.add(new GlassesMatcher.Match("등록한 탐색 대상", "저장한 이름과 일치", 3));
         }

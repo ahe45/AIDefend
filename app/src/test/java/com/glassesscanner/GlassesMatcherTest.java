@@ -8,6 +8,36 @@ import java.util.Map;
 import static org.junit.Assert.*;
 
 public class GlassesMatcherTest {
+    @Test public void deletedTargetsDisableNameUuidAndCompanyRules() {
+        assertTrue(GlassesMatcher.classify("Even G2_01_L_123456", Set.of(),
+                Set.of(DeviceCatalog.G2_UUID), Set.of(DeviceCatalog.G2_UUID), Set.of("Even Realities G2")).isEmpty());
+        assertTrue(GlassesMatcher.classify("Rokid Glasses", Set.of(), Set.of(), Set.of(), Set.of("Rokid Glasses")).isEmpty());
+        assertTrue(GlassesMatcher.classify("Vuzix Z100", Set.of(0x060C), Set.of(), Set.of(), Set.of("Vuzix")).isEmpty());
+        assertTrue(GlassesMatcher.classify("Glasses_4097", Set.of(), Set.of(), Set.of(),
+                Set.of("Glasses 이름 스마트글래스")).isEmpty());
+        assertTrue(GlassesMatcher.classify("Ray-Ban Meta", Set.of(0x01AB), Set.of(), Set.of(),
+                Set.of("Ray-Ban / Meta")).isEmpty());
+        assertFalse(GlassesMatcher.classify("Glasses_4097", Set.of(), Set.of(DeviceCatalog.HEYCYAN_UUID), Set.of(),
+                Set.of("Glasses 이름 스마트글래스")).isEmpty());
+        Set<String> all = DeviceCatalog.ENTRIES.stream().map(DeviceCatalog.Entry::label)
+                .collect(java.util.stream.Collectors.toSet());
+        assertTrue(GlassesMatcher.classify("Glasses_4097", Set.of(0x060C, 0x01AB, 0x03C2),
+                Set.of(DeviceCatalog.FRAME_UUID, DeviceCatalog.G2_UUID, DeviceCatalog.HEYCYAN_UUID,
+                        DeviceCatalog.ROKID_DISCOVERY_UUID), Set.of(), all).isEmpty());
+    }
+
+    @Test public void scanServiceUsesDeletedTargetsAndRetainsCustomRules() {
+        RadioScanner.Signal signal = new RadioScanner.Signal(RadioScanner.Mode.BLE, "01:23:45:67:89:AB",
+                "Even G2_01_L_123456", -60, Set.of(), Set.of(DeviceCatalog.G2_UUID), Set.of());
+        SavedTargets.Snapshot defaults = new SavedTargets.Snapshot(Set.of(), Set.of(), Set.of());
+        assertFalse(ScanService.match(signal, defaults).isEmpty());
+        SavedTargets.Snapshot deleted = new SavedTargets.Snapshot(Set.of(), Set.of(), Set.of(), Set.of("Even Realities G2"));
+        assertTrue(ScanService.match(signal, deleted).isEmpty());
+        SavedTargets.Snapshot custom = new SavedTargets.Snapshot(Set.of(signal.name()), Set.of(), Set.of(),
+                deleted.deletedBuiltins());
+        assertEquals("등록한 탐색 대상", ScanService.match(signal, custom).get(0).label());
+    }
+
     @Test public void rokidTwoSignalsStrengthenCandidate() {
         String discovery = "00009100-0000-1000-8000-00805f9b34fb";
         String serviceData = "00009a01-0000-1000-8000-00805f9b34fb";

@@ -133,7 +133,7 @@ final class TargetsEditor {
     private void reloadTargets() {
         if (browser == null || !browser.isShowing()) return;
         List<Target> values = new ArrayList<>();
-        for (DeviceCatalog.Entry device : DeviceCatalog.ENTRIES) values.add(new Target(device, null));
+        for (DeviceCatalog.Entry device : store.builtins()) values.add(new Target(device, null));
         List<Rule> custom = new ArrayList<>();
         for (Kind kind : Kind.values()) {
             for (String value : entries(kind)) custom.add(new Rule(kind, value));
@@ -155,8 +155,9 @@ final class TargetsEditor {
         RecyclerView list = browser.findViewById(R.id.targets_list);
         adapter.submitList(visible, () -> { if (resetScroll) list.scrollToPosition(0); });
         TextView count = browser.findViewById(R.id.targets_count);
-        count.setText(activity.getString(R.string.targets_count, visible.size(), DeviceCatalog.ENTRIES.size(),
-                targets.size() - DeviceCatalog.ENTRIES.size()));
+        int builtinCount = (int) targets.stream().filter(Target::builtin).count();
+        count.setText(activity.getString(R.string.targets_count, visible.size(), builtinCount,
+                targets.size() - builtinCount));
         TextView empty = browser.findViewById(R.id.targets_empty);
         empty.setText(query.trim().isEmpty() && filter == R.id.targets_custom
                 ? R.string.targets_no_custom : R.string.targets_no_results);
@@ -189,7 +190,15 @@ final class TargetsEditor {
         android.text.util.Linkify.addLinks(text, android.text.util.Linkify.WEB_URLS);
         text.setMovementMethod(android.text.method.LinkMovementMethod.getInstance());
         scroll.addView(text);
-        new IconDialogBuilder(activity).setTitle(entry.label()).setView(scroll).setPositiveButton("닫기", null).show();
+        new IconDialogBuilder(activity).setTitle(entry.label()).setView(scroll).setPositiveButton("닫기", null)
+                .setNeutralButton("삭제", (dialog, which) -> new IconDialogBuilder(activity)
+                        .setTitle("이 탐색 대상을 삭제할까요?")
+                        .setMessage(entry.label() + "\n\n" + activity.getString(R.string.targets_delete_help))
+                        .setNegativeButton("취소", null).setPositiveButton("삭제", (confirmation, action) -> {
+                            store.deleteBuiltin(entry);
+                            reloadTargets();
+                            activity.preferencesChanged();
+                        }).show()).show();
     }
 
     private int dp(int value) {

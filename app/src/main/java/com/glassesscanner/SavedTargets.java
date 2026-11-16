@@ -37,10 +37,25 @@ final class SavedTargets {
         return new LinkedHashSet<>(preferences.getStringSet("manufacturer_ids", new LinkedHashSet<>()));
     }
 
-    record Snapshot(Set<String> names, Set<String> uuids, Set<String> manufacturerIds) {}
+    record Snapshot(Set<String> names, Set<String> uuids, Set<String> manufacturerIds, Set<String> deletedBuiltins) {
+        Snapshot(Set<String> names, Set<String> uuids, Set<String> manufacturerIds) {
+            this(names, uuids, manufacturerIds, Set.of());
+        }
+    }
+
+    java.util.List<DeviceCatalog.Entry> builtins() {
+        Set<String> deleted = preferences.getStringSet("deleted_builtin_targets", Set.of());
+        return DeviceCatalog.ENTRIES.stream().filter(entry -> !deleted.contains(entry.label()))
+                .collect(java.util.stream.Collectors.toList());
+    }
+
+    void deleteBuiltin(DeviceCatalog.Entry entry) {
+        replace("deleted_builtin_targets", null, entry.label());
+    }
 
     Snapshot snapshot() {
-        return new Snapshot(values(false), values(true), manufacturerIds());
+        return new Snapshot(values(false), values(true), manufacturerIds(),
+                new LinkedHashSet<>(preferences.getStringSet("deleted_builtin_targets", Set.of())));
     }
 
     void replace(String key, String previous, String value) {
