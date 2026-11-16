@@ -1,0 +1,7 @@
+/.gradle/
+/.idea/
+/.codex/
+/local.properties
+**/build/
+/release-signing/
+

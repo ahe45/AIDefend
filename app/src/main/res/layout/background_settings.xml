@@ -1,0 +1,20 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginBottom="16dp"
+    app:cardCornerRadius="16dp" app:strokeWidth="1dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:text="@string/background_title" android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:accessibilityHeading="true" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:text="@string/background_help" android:textColor="@color/muted" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/background_battery"
+            style="@style/Widget.GlassesScanner.OutlinedButton" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp" android:gravity="start|center_vertical"
+            app:iconGravity="start" app:icon="@drawable/ic_permission_battery" />
+        <TextView android:id="@+id/background_power_state" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="8dp" android:visibility="gone"
+            android:text="@string/background_power_saver" android:textColor="@color/muted" />
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

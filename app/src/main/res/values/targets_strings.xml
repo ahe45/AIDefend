@@ -1,0 +1,13 @@
+<resources>
+    <string name="targets_title">탐색 대상 관리</string>
+    <string name="targets_search_hint">이름, 모델, UUID 검색</string>
+    <string name="targets_filter_all">전체</string>
+    <string name="targets_filter_builtin">기본 등록</string>
+    <string name="targets_filter_custom">사용자 등록</string>
+    <string name="targets_count">%1$d개 표시 · 기본 %2$d개 · 사용자 %3$d개</string>
+    <string name="targets_no_results">검색 결과가 없습니다.\n다른 이름이나 식별 정보로 검색해 주세요.</string>
+    <string name="targets_no_custom">사용자 등록 대상이 없습니다.\n‘대상 추가’로 이름이나 식별 정보를 등록하세요.</string>
+    <string name="targets_custom_evidence">직접 등록한 판별 기준 · 다음 스캔부터 적용</string>
+    <string name="targets_name_pattern">이름 판별 패턴</string>
+    <string name="targets_add">대상 추가</string>
+</resources>

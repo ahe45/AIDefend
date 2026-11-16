@@ -1,0 +1,5 @@
+<resources>
+    <color name="target_card">#1D293B</color>
+    <color name="target_outline">#435169</color>
+    <color name="target_custom">#8DF2B1</color>
+</resources>

@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:background="@color/surface">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="56dp" app:titleTextColor="@color/on_surface" />
+
+    <include layout="@layout/screen_permissions" />
+
+    <LinearLayout android:id="@+id/app_content" android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1" android:orientation="horizontal">
+        <FrameLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1">
+            <include layout="@layout/screen_scan" />
+            <ScrollView android:id="@+id/history_screen" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:visibility="gone" android:fillViewport="true">
+                <LinearLayout android:id="@+id/history_rows" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical"
+                    android:padding="@dimen/space_medium" />
+            </ScrollView>
+            <ScrollView android:id="@+id/settings_screen" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:visibility="gone">
+                <include layout="@layout/screen_settings" />
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/navigation" android:layout_width="match_parent" android:layout_height="wrap_content"
+        app:menu="@menu/main_navigation" app:labelVisibilityMode="labeled" />
+</LinearLayout>

@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scan_controls"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:paddingTop="@dimen/space_small" android:paddingBottom="@dimen/space_small">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:minHeight="96dp" android:orientation="horizontal" android:gravity="center_vertical" android:baselineAligned="false">
+        <com.google.android.material.button.MaterialButton android:id="@+id/scan_action"
+            android:layout_width="0dp" android:layout_weight="1" android:layout_marginEnd="@dimen/space_medium"
+            android:layout_height="96dp" android:insetTop="0dp" android:insetBottom="0dp"
+            android:textSize="22sp" android:textStyle="bold" app:icon="@drawable/ic_play"
+            app:iconGravity="textStart" app:iconSize="32dp" android:text="@string/scan_start" />
+        <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/only_candidates"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:minHeight="@dimen/touch_min" android:text="@string/candidates_only" />
+    </LinearLayout>
+    <TextView android:id="@+id/scan_status" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:visibility="gone" android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:accessibilityLiveRegion="polite" />
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progress" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_small" android:visibility="gone" />
+    <com.google.android.material.button.MaterialButton android:id="@+id/recovery"
+        style="@style/Widget.GlassesScanner.OutlinedButton" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:minHeight="@dimen/touch_min" android:visibility="gone" />
+    <TextView android:id="@+id/scan_time" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:textColor="@color/muted" android:visibility="gone" />
+    <com.google.android.material.button.MaterialButton android:id="@+id/clear"
+        style="@style/Widget.GlassesScanner.OutlinedButton" android:layout_width="wrap_content"
+        android:layout_height="wrap_content" android:minHeight="@dimen/touch_min"
+        android:visibility="gone" android:text="@string/clear_list" />
+    <TextView android:id="@+id/empty" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:visibility="gone" android:paddingTop="@dimen/space_small" android:textColor="@color/muted" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical" android:baselineAligned="false">
+        <TextView android:id="@+id/counts" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:textAppearance="?attr/textAppearanceLabelLarge" />
+        <com.google.android.material.button.MaterialButton android:id="@+id/sort"
+            style="@style/Widget.GlassesScanner.OutlinedButton" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:minHeight="@dimen/touch_min"
+            android:contentDescription="목록 정렬 선택" android:text="후보 우선"
+            app:icon="@android:drawable/arrow_down_float" app:iconGravity="textEnd" />
+    </LinearLayout>
+</LinearLayout>

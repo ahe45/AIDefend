@@ -1,0 +1,8 @@
+<resources>
+    <color name="brand">#184DB4</color>
+    <color name="on_brand">#FFFFFF</color>
+    <color name="surface">#F8FAFF</color>
+    <color name="on_surface">#172134</color>
+    <color name="muted">#475770</color>
+    <color name="icon_background">#184DB4</color>
+</resources>
