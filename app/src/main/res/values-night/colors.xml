@@ -4,4 +4,9 @@
     <color name="surface">#141C29</color>
     <color name="on_surface">#EDF2FF</color>
     <color name="muted">#C2CEE2</color>
+    <color name="detail_section_background">#1C2636</color>
+    <color name="detail_section_outline">#3A4A62</color>
+    <color name="settings_group_surface">#1C2636</color>
+    <color name="settings_group_outline">#465A76</color>
+    <color name="settings_group_heading_surface">#293D5A</color>
 </resources>

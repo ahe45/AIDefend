@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+    android:padding="@dimen/space_small" android:divider="@drawable/settings_divider"
+    android:dividerPadding="@dimen/space_medium" android:showDividers="middle">
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/advanced_scanning" style="@style/Widget.DeviceGuard.SettingsSwitch"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/settings_advanced_scan" />
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/automatic_scanning" style="@style/Widget.DeviceGuard.SettingsSwitch"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/settings_automatic_scan" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/default_mode" style="@style/Widget.DeviceGuard.SettingsRow"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="@string/settings_manual_scan" app:icon="@drawable/ic_stat_scan" />
+</LinearLayout>

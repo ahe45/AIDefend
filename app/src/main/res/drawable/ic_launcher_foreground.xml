@@ -1,5 +1,28 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
-    <path android:fillColor="#FFFFFF"
-        android:pathData="M23,52h7l3,-5h15l5,4h2l5,-4h15l3,5h7v5h-6l-3,10q-1,4 -5,4h-9q-5,0 -6,-4l-2,-8h-1l-2,8q-1,4 -6,4h-9q-4,0 -5,-4l-3,-10h-6z M35,53l3,12h10l3,-11 -4,-1z M61,53l-3,1 3,11h10l3,-12z M49,40q5,-5 10,0l-2,2q-3,-3 -6,0z M44,35q10,-10 20,0l-2,2q-8,-8 -16,0z" />
+    android:width="108dp" android:height="108dp"
+    android:viewportWidth="1254" android:viewportHeight="1254">
+    <!-- Keep the scan corners within the circular adaptive icon safe zone. -->
+    <group android:pivotX="627" android:pivotY="628"
+        android:scaleX="0.70" android:scaleY="0.70">
+        <path android:fillColor="#00000000" android:strokeColor="#00265B"
+            android:strokeWidth="62" android:strokeLineCap="round"
+            android:pathData="M409,270 H310 Q236,270 236,345 V416
+                M845,270 H944 Q1018,270 1018,345 V416
+                M236,843 V912 Q236,986 310,986 H409
+                M1018,843 V912 Q1018,986 944,986 H845" />
+        <path android:fillColor="#00265B" android:fillType="evenOdd"
+            android:pathData="M247,766 Q218,766 229,733 L318,522 Q326,502 347,502 H389
+                Q407,502 415,522 L496,732 Q507,766 474,766 H449
+                Q431,766 424,750 L409,711 H317 L301,751 Q295,766 277,766 Z
+                M338,647 H390 L365,575 Z
+                M533,502 H562 Q584,502 584,525 V744 Q584,766 562,766 H533
+                Q511,766 511,744 V525 Q511,502 533,502 Z
+                M623,710 H730 Q752,710 752,732 V744 Q752,766 730,766 H623
+                Q601,766 601,744 V732 Q601,710 623,710 Z
+                M794,502 H879 C966,502 1019,558 1019,634 C1019,710 966,766 879,766
+                H794 Q771,766 771,744 V524 Q771,502 794,502 Z
+                M847,568 V699 H877 C918,699 940,673 940,634 C940,595 918,568 877,568 Z" />
+        <path android:fillColor="#32E58C"
+            android:pathData="M914,378 A41,41 0,1 0,832 378 A41,41 0,1 0,914 378 Z" />
+    </group>
 </vector>

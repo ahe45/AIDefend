@@ -1,24 +1,62 @@
 <resources>
-    <style name="Theme.GlassesScanner" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Theme.DeviceGuard" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/brand</item>
         <item name="colorOnPrimary">@color/on_brand</item>
         <item name="colorSurface">@color/surface</item>
         <item name="colorOnSurface">@color/on_surface</item>
         <item name="android:windowBackground">@color/surface</item>
-        <item name="materialButtonStyle">@style/Widget.GlassesScanner.Button</item>
-        <item name="materialButtonOutlinedStyle">@style/Widget.GlassesScanner.OutlinedButton</item>
+        <item name="materialButtonStyle">@style/Widget.DeviceGuard.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.DeviceGuard.OutlinedButton</item>
     </style>
-    <style name="Theme.GlassesScanner.Starting" parent="Theme.GlassesScanner">
+    <style name="Theme.DeviceGuard.Starting" parent="Theme.DeviceGuard">
         <item name="android:windowBackground">@drawable/launch_window</item>
     </style>
-    <style name="Widget.GlassesScanner.Button" parent="Widget.Material3.Button">
+    <style name="Widget.DeviceGuard.Button" parent="Widget.Material3.Button">
         <item name="icon">@drawable/ic_action</item><item name="iconGravity">textStart</item>
     </style>
-    <style name="Widget.GlassesScanner.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+    <style name="Widget.DeviceGuard.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
         <item name="icon">@drawable/ic_action</item><item name="iconGravity">textStart</item>
         <item name="cornerRadius">12dp</item><item name="android:minHeight">56dp</item>
     </style>
-    <style name="Widget.GlassesScanner.TextButton" parent="Widget.Material3.Button.TextButton">
+    <style name="Widget.DeviceGuard.TextButton" parent="Widget.Material3.Button.TextButton">
         <item name="icon">@drawable/ic_action</item><item name="iconGravity">textStart</item>
+    </style>
+    <style name="Widget.DeviceGuard.SettingsRow" parent="Widget.Material3.Button.TextButton">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:paddingStart">@dimen/space_medium</item>
+        <item name="android:paddingEnd">@dimen/space_medium</item>
+        <item name="android:textColor">@color/settings_row_foreground</item>
+        <item name="android:textSize">16sp</item>
+        <item name="iconGravity">start</item>
+        <item name="iconPadding">@dimen/space_medium</item>
+        <item name="iconTint">@color/settings_row_foreground</item>
+    </style>
+    <style name="Widget.DeviceGuard.SettingsSection" parent="">
+        <item name="android:background">@drawable/settings_group_heading</item>
+        <item name="android:paddingStart">@dimen/space_medium</item>
+        <item name="android:paddingEnd">@dimen/space_medium</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAppearance">?attr/textAppearanceTitleSmall</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/brand</item>
+    </style>
+    <style name="Widget.DeviceGuard.SettingsGroup" parent="">
+        <item name="android:orientation">vertical</item>
+        <item name="android:layout_marginBottom">@dimen/space_medium</item>
+        <item name="android:background">@drawable/settings_group_background</item>
+        <item name="android:padding">1dp</item>
+        <item name="android:divider">@drawable/settings_divider</item>
+        <item name="android:dividerPadding">@dimen/space_medium</item>
+        <item name="android:showDividers">middle</item>
+    </style>
+    <style name="Widget.DeviceGuard.SettingsSwitch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="android:minHeight">56dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingStart">@dimen/space_medium</item>
+        <item name="android:paddingEnd">@dimen/space_medium</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textSize">16sp</item>
     </style>
 </resources>

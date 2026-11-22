@@ -1,0 +1,22 @@
+<resources>
+    <string name="result_device_name">기기명</string>
+    <string name="result_classification">분류</string>
+    <string name="result_transport">스캔 방식</string>
+    <string name="result_signal">신호 세기</string>
+    <string name="result_address">기기 주소</string>
+    <string name="result_matched_targets">일치 항목</string>
+    <string name="result_evidence">스캔 근거</string>
+    <style name="Widget.DeviceGuard.ResultLabel" parent="">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/muted</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="Widget.DeviceGuard.ResultValue" parent="">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+</resources>

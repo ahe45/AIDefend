@@ -2,5 +2,6 @@
     <dimen name="space_small">8dp</dimen>
     <dimen name="space_medium">16dp</dimen>
     <dimen name="touch_min">48dp</dimen>
+    <dimen name="scan_control_height">56dp</dimen>
     <bool name="wide_layout">false</bool>
 </resources>

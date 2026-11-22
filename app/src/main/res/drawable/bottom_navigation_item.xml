@@ -1,0 +1,25 @@
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?attr/colorControlHighlight">
+    <item>
+        <selector>
+            <item android:state_checked="true">
+                <inset android:insetLeft="6dp" android:insetRight="6dp"
+                    android:insetTop="4dp" android:insetBottom="4dp">
+                    <shape android:shape="rectangle">
+                        <corners android:radius="16dp" />
+                        <solid android:color="@color/settings_group_heading_surface" />
+                    </shape>
+                </inset>
+            </item>
+        </selector>
+    </item>
+    <item android:id="@android:id/mask">
+        <inset android:insetLeft="6dp" android:insetRight="6dp"
+            android:insetTop="4dp" android:insetBottom="4dp">
+            <shape android:shape="rectangle">
+                <corners android:radius="16dp" />
+                <solid android:color="@android:color/white" />
+            </shape>
+        </inset>
+    </item>
+</ripple>

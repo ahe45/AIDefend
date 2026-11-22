@@ -1,13 +1,63 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/space_small" android:clickable="true" android:focusable="true">
     <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
-        android:orientation="vertical" android:minHeight="@dimen/touch_min" android:padding="@dimen/space_medium">
-        <TextView android:id="@+id/result_title" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceTitleMedium" />
-        <TextView android:id="@+id/result_metadata" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:textColor="@color/muted" />
+        android:orientation="vertical" android:padding="@dimen/space_medium">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/result_device_name" />
+            <TextView android:id="@+id/result_title" style="@style/Widget.DeviceGuard.ResultValue"
+                android:textAppearance="?attr/textAppearanceTitleMedium" android:textSize="18sp" android:textStyle="bold" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="6dp" android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/result_classification" />
+            <TextView android:id="@+id/result_status" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:paddingHorizontal="10dp" android:paddingVertical="5dp" android:textStyle="bold" android:textSize="14sp" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="6dp" android:orientation="horizontal">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/result_transport" />
+            <TextView android:id="@+id/result_metadata" style="@style/Widget.DeviceGuard.ResultValue" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:orientation="horizontal">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/result_signal" />
+            <TextView android:id="@+id/result_signal" style="@style/Widget.DeviceGuard.ResultValue" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:orientation="horizontal">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/result_address" />
+            <TextView android:id="@+id/result_address" style="@style/Widget.DeviceGuard.ResultValue" />
+        </LinearLayout>
+        <LinearLayout android:id="@+id/result_targets_row" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:orientation="horizontal">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/result_matched_targets" />
+            <TextView android:id="@+id/result_targets" style="@style/Widget.DeviceGuard.ResultValue" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:orientation="horizontal">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="마지막 스캔" />
+            <TextView android:id="@+id/result_seen" style="@style/Widget.DeviceGuard.ResultValue" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:orientation="horizontal">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="이름 출처" />
+            <TextView android:id="@+id/result_name_origin" style="@style/Widget.DeviceGuard.ResultValue" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:orientation="horizontal">
+            <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="근거 상태" />
+            <TextView android:id="@+id/result_level" style="@style/Widget.DeviceGuard.ResultValue" />
+        </LinearLayout>
+        <TextView android:id="@+id/result_evidence_title" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:text="@string/result_evidence" android:textStyle="bold"
+            android:textColor="@color/on_surface" android:textSize="14sp" android:accessibilityHeading="true" />
+        <com.google.android.material.chip.ChipGroup android:id="@+id/result_evidence_badges"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            app:chipSpacingHorizontal="4dp" app:chipSpacingVertical="0dp" />
         <TextView android:id="@+id/result_reason" android:layout_width="match_parent" android:layout_height="wrap_content"
-            android:textAppearance="?attr/textAppearanceBodyMedium" />
+            android:layout_marginTop="4dp" android:textColor="@color/on_surface" android:textSize="14sp" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

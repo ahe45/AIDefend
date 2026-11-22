@@ -1,5 +1,8 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scanner_frame"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<LinearLayout
     android:id="@+id/root" android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" android:background="@color/surface">
 
@@ -23,10 +26,33 @@
                 android:layout_height="match_parent" android:visibility="gone">
                 <include layout="@layout/screen_settings" />
             </ScrollView>
+            <FrameLayout android:id="@+id/settings_page" android:layout_width="match_parent"
+                android:layout_height="match_parent" android:visibility="gone" />
         </FrameLayout>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation" android:layout_width="match_parent" android:layout_height="wrap_content"
-        app:menu="@menu/main_navigation" app:labelVisibilityMode="labeled" />
+        android:minHeight="64dp" android:background="@color/surface"
+        app:elevation="0dp"
+        app:menu="@menu/main_navigation" app:labelVisibilityMode="labeled"
+        app:itemBackground="@drawable/bottom_navigation_item"
+        app:itemIconTint="@color/bottom_navigation_content"
+        app:itemTextColor="@color/bottom_navigation_content"
+        app:itemPaddingTop="6dp" app:itemPaddingBottom="6dp" />
 </LinearLayout>
+    <FrameLayout android:id="@+id/launch_splash"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@color/splash_background"
+        android:clickable="true" android:importantForAccessibility="no" android:visibility="gone">
+        <ImageView android:id="@+id/splash_artwork"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:scaleType="fitCenter" android:contentDescription="@string/splash_description" />
+        <TextView android:id="@+id/splash_version"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center" android:textColor="@android:color/white"
+            android:textAppearance="?attr/textAppearanceBodyMedium"
+            android:shadowColor="@android:color/black" android:shadowDy="1" android:shadowRadius="3" />
+    </FrameLayout>
+</FrameLayout>

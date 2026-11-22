@@ -1,76 +1,86 @@
-# GlassesScanner 2.4
+# AI 디펜드 (AI Defend)
 
-## 설치 및 사용
+AI 장비의 부정 사용을 예방하기 위한 주변 무선기기 스캔 앱. 스마트글래스, 무선 이어버드 등 의심 기기를 찾고 일치한 신호와 스캔 이력을 확인할 수 있음.
 
-- 초기 설정은 위치·주변 기기·알림·다른 앱 위에 표시·배터리 최적화 제외까지 필수 항목 5개를 확인합니다. 모든 항목을 완료하면 앱 화면이 열립니다. 배터리 최적화 제외 상태는 시스템에서 확인하며, 제외가 해제되면 다시 설정해야 합니다.
-- 스캔 시작 시 선택한 모드에 필요한 Bluetooth·Wi-Fi·위치 서비스가 꺼져 있으면 **스캔 필수 설정** 알림창에서 항목별 설정을 열 수 있습니다. 통합 관측은 Bluetooth와 Wi-Fi를 모두 확인합니다. 설정 후 **다시 확인하고 스캔 시작**을 누르면 상태를 재검사합니다.
-- 백그라운드 스캔 중에는 시간 제한이 있는 CPU 절전 잠금을 갱신하고 종료 시 해제합니다. Android가 같은 부팅 내에서 종료된 서비스를 재시작하면 마지막 모드와 남은 시간을 새 관측 세션으로 복구합니다. 사용자 중지와 정상 완료 시에는 복구 요청을 지웁니다.
+## 사용 방법
 
-- Android Studio에서 프로젝트 루트를 엽니다. Gradle Wrapper 9.4.1, AGP 9.2.1, Android SDK 36.1을 사용합니다. Android 8.0(API 26) 이상에서 실행합니다.
-- Windows 터미널에서 `.\gradlew.bat assembleDebug`를 실행하면 `app/build/outputs/apk/debug/app-debug.apk`가 생성됩니다. 기존 설치본을 업데이트할 때는 같은 앱 서명 키가 필요합니다.
-- 기본 모드는 **통합 관측 · BLE + Classic + Wi-Fi AP**입니다. 기존 설치에도 한 번 적용되며 이후 선택한 모드는 유지됩니다. 처음 BLE 12초를 관측한 뒤 Classic과 Wi-Fi AP 검색을 진행하고, 이후 BLE 60초와 다른 검색을 반복합니다. 기본 시간은 무제한이며 BLE와 통합 관측에 시간 제한을 설정할 수 있습니다. Wi-Fi 요청 간격은 화면 사용 중 최소 2분, 백그라운드 최소 30분으로 제한합니다. 요청 거절이나 무선 기능 중단 시 나머지 수단으로 관측을 이어갑니다. 개별 BLE, Classic, BLE + Classic, Wi-Fi AP 모드도 설정에서 선택할 수 있습니다.
-- 결과를 선택하면 후보 근거와 주소, RSSI, 제조사 ID, 광고 서비스 UUID를 볼 수 있습니다. 태블릿의 넓은 창에서는 결과와 상세를 함께 표시합니다.
-- 백그라운드 스캔을 시작하면 알림 목록에 모드, 진행 단계, 경과 시간과 후보 수가 표시됩니다. 진행 알림에서 스캔 화면을 열거나 중지할 수 있습니다. 후보 알림은 스캔 중 새 후보가 처음 관측될 때 기기에서 생성되며 인터넷이 필요하지 않습니다.
-- 진행 알림이 차단된 경우 앱에서 알림 설정으로 이동하거나 화면을 보는 동안만 스캔할 수 있습니다. 화면 잠금 중 BLE 수신 범위는 광고 유형과 등록한 필터에 따라 달라집니다. Wi-Fi AP는 Android의 스캔 호출 제한을 따릅니다.
-- **관측 이력**에서 최근 세션의 결과와 종료 상태를 확인할 수 있습니다. 기본 보관 범위는 최근 30회이며, 세션마다 최대 100건의 상세를 저장합니다. 2.3의 기존 기록은 원문으로 가져옵니다. **설정**에서 기본 모드·시간, 후보 알림, 테마, 이력 보관 범위, 탐색 대상을 관리할 수 있습니다.
-- **사진 확인**에서 사진을 촬영하거나 기기에서 골라 확대해 볼 수 있습니다. 미리보기를 닫으면 임시 촬영 파일이 정리됩니다.
+1. 정확한 위치, 주변 기기, 알림, 다른 앱 위에 표시, 배터리 최적화 예외를 설정. 다섯 항목이 완료되면 스캔 화면이 열림.
+2. **스캔 기기 종류 선택**에서 스마트글래스, 초소형 카메라·카메라펜, 무선 이어피스·이어버드, 스마트워치·스마트밴드 선택. 기본값은 네 종류 모두 선택.
+3. **스캔 시작** 선택. 자동 모드가 선택 유형에 맞춰 BLE·Bluetooth Classic·Wi-Fi AP 경로 구성. 경로별 권한 부족·검색 제한·실패·이전 결과를 구분하며, 사용 가능한 경로로 부분 실행 가능.
+4. 목록에서 유형, 관측 방식, 근거 상태, 일치 조건, 마지막 관측 시각 확인. **위치 찾기**에서 최근 RSSI 변화 비교. RSSI는 실제 거리·방향·사용자를 확정하지 않는 참고값.
+5. 스캔 화면에서 **의심 기기만 보기**를 끄면 미분류 신호까지 표시. 전체 스캔 건수는 필터와 관계없이 표시. 고급 스캔에서 **스캔 대상으로 추가**를 선택해 유형·출처·필드·값·경보 여부 등록 가능.
 
-## 검증 명령
+## 탐지 및 경보 정책
+
+- 공개된 BLE 광고, 검색 가능한 Classic 응답, Wi-Fi AP만 관측. 연결·페어링·네트워크 접속·카메라 촬영 여부 확인은 수행하지 않음.
+- 기존 스마트글래스 규칙과 공개 제품 정보는 근거 수준 및 실기 검증 전 상태로 표시. 제조사 ID, 공용 UUID, 장비 클래스, SSID 접두사 단독 일치는 보조 단서로 표시.
+- 의심 기기 알림을 켜면 새로 수신한 기본 등록의 제품명·모델 신호와 사용자가 경보를 허용한 정확한 등록 조건에 경고 표시. 제조사 ID·공용 UUID·캐시 이름 등 보조 단서는 경고에서 제외.
+- 한 관측에서 다른 기기 유형이 충돌하면 경보 보류. 동일 출처의 관측 키당 세션 1회 경보. 다른 무선 출처는 동일 주소여도 별도 관측으로 유지.
+- 이전 Wi-Fi 결과는 새 의심 기기 집계·경보·실시간 RSSI에서 제외. 신호 필드를 무기한 합쳐 근거를 늘리지 않음.
+- 스캔 시작 시 선택 유형·등록 규칙·경로·규칙 버전 고정. 실행 중 변경은 다음 스캔부터 적용. 같은 부팅·규칙 버전에서 복구 가능한 백그라운드 요청만 재개.
+- 새 일반 이력은 선택 유형·경로 상태·완료 경로·규칙 버전·근거 종류·시각 중심으로 저장. 원시 주소·전체 페이로드·원래 기기/SSID 이름은 새 일반 이력에서 제외. 기존 기록은 유지.
+
+휴대폰·핫스팟, 스마트링, 스마트펜·번역기, 녹음기는 후속 별도 유형. 초기 버전에서 모델별 탐지율을 보증하지 않으며 실제 기기·펌웨어·상태별 검증 필요. 유선·내부 저장 전용 장비, 공개 무선 신호가 없는 장비는 확인 불가.
+
+## 기존 앱 업데이트 호환성
+
+- Gradle 프로젝트·폴더명: `AIDefend`. Git 저장소 이름: `ai-defend`.
+- 코드 패키지: `com.uplusys.deviceguard`. 설치 앱 ID: `com.glassesscanner`. 기존 DeviceGuard와 GlassesScanner에서 업데이트 설치하여 등록·이력 보존.
+- 기존 런처 컴포넌트는 activity-alias로 유지하여 홈 화면 바로가기와 이전 실행 인텐트 호환.
+- 기존 배포 키로 서명 필요. 디버그 키 APK로 기존 릴리스 앱을 덮어쓸 수 없음.
+- `saved_targets`의 기존 등록을 출처·필드가 있는 규칙으로 이관. 종류가 없는 등록은 **종류 미지정**으로 보관하고, 관리 화면에서 종류를 지정한 후 해당 유형의 스캔에 포함. 신규 등록 시 기기 종류 필수.
+- 이력 SQLite v1→v2 확장. 기존 행과 이전 JSON 기록 읽기 유지. 이전 버전의 고정 설정 없는 진행 중 요청은 자동 재해석하지 않음.
+
+## 릴리스 버전
+
+- `app/build.gradle.kts`에서 `versionName`을 `MAJOR.MINOR.PATCH` 형식으로 관리. 앱에는 `ver_1.1.3`처럼 표시되며, 서명 APK 파일명에도 같은 버전이 자동 반영됨.
+- 호환성을 깨는 변경은 MAJOR, 호환되는 기능 추가는 MINOR, 버그 수정은 PATCH를 올림. 배포 빌드의 Android `versionCode`는 직전 배포본보다 큰 정수로 설정.
+- `ver_3.0.0` (`versionCode=9`)부터 세 자리 버전 관리 시작. 직전 배포본은 `3.0` (`versionCode=8`).
+- `ver_3.0.1` (`versionCode=10`): 하단 메뉴 높이와 선택 표시 개선.
+- `ver_3.0.2` (`versionCode=11`): 의심 기기 경고와 위치 찾기 팝업 간소화.
+- `ver_3.0.3` (`versionCode=12`): 의심 기기 경고창의 라벨과 값 배치 개선.
+- `ver_1.1.3` (`versionCode=13`): 이후 릴리스의 표시 버전 기준을 `1.1.3`으로 변경. Android 내부 버전 번호는 기존 배포본에서 이어서 증가.
+- `ver_1.1.4` (`versionCode=14`): 하단 메뉴의 배경을 앱 화면 및 시스템 제스처 영역과 같은 색상으로 조정.
+- `ver_1.1.5` (`versionCode=15`): 제스처 모드에서 하단 메뉴를 화면 하단에 배치하고 3버튼 내비게이션과 키보드 영역은 확보.
+- `ver_1.1.6` (`versionCode=16`): 스캔 기기 네 종류를 기본 선택으로 설정.
+- `ver_1.2.0` (`versionCode=17`): 제조사 문서로 확인한 BLE 광고, Bluetooth 검색명, 카메라 SSID를 기본 등록 목록에 추가. 출처가 확인된 스캔 경로에만 적용.
+- `ver_1.2.1` (`versionCode=18`): 앱 이름을 AI 디펜드로 변경하고 스플래시와 배포 APK 이름에 새 브랜드 적용.
+- `ver_1.2.2` (`versionCode=19`): 런처와 Android 시작 화면에 네이비 AI_D 아이콘 적용.
+- `ver_1.2.3` (`versionCode=20`): 런처와 Android 시작 화면의 아이콘 배경을 `#FEFEFE`로 조정.
+- `ver_1.2.4` (`versionCode=21`): 런처와 시작 아이콘의 배경색을 통일하고, 중앙 레이더 스플래시 적용.
+- `ver_1.2.5` (`versionCode=22`): 공용 스캔 아이콘을 돋보기와 무선 신호 모양으로 교체.
+- `ver_1.2.6` (`versionCode=23`): 권한 설정 다섯 항목이 모두 완료될 때 스캔 화면으로 이동.
+- `ver_1.2.7` (`versionCode=24`): 기본 등록 신호 일치를 의심 기기 경고에 연결.
+- `ver_1.2.8` (`versionCode=25`): 광고 서비스와 서비스 데이터에 중복된 BLE UUID를 하나의 근거로 계산해 오경보 방지.
+- `ver_1.2.9` (`versionCode=26`): 위치 권한 승인 후 다음 미설정 권한 요청으로 자동 진행.
+- `ver_1.2.10` (`versionCode=27`): 다른 앱 위에 표시를 허용하고 돌아오면 배터리 최적화 예외 설정으로 자동 진행.
+
+## 개발 및 검증
+
+Java 17, minSdk 26, targetSdk 36, compileSdk 36.1. Android Views / Material 3, AGP 9.5.2, Gradle 9.6.0.
 
 ```powershell
-.\gradlew.bat assembleDebug testDebugUnitTest lintDebug
-.\gradlew.bat connectedDebugAndroidTest
-.\gradlew.bat bundleRelease
+.\gradlew.bat assembleDebug assembleDebugAndroidTest testDebugUnitTest lintDebug
+.\gradlew.bat assembleRelease
+& .\scripts\sign-release.ps1 -SigningDirectory '..\DeviceGuard\release-signing'
 ```
 
-기기에 연결한 상태에서 이력 이관·중복 저장 방지·중단 복구 테스트를 실행합니다. 배포용 서명은 기존 배포 키와 배포 방식에 맞춥니다. Galaxy Tab A의 잠금 중 후보 탐지, 알림 갱신·중지, 무제한 BLE 지속 동작에 대한 실기기 절차는 `plan.md`에 있습니다.
+기존 앱 업데이트 검증 시 기존 키로 릴리스 APK와 테스트 APK를 서명하여 `adb install -r` 사용. `connectedDebugAndroidTest`의 자동 제거 동작으로 사용자 데이터가 지워지지 않도록 주의.
 
-## 기존 구현과 식별 근거
+서명 스크립트는 기존 키를 보관한 폴더를 `-SigningDirectory`로 받아 `AIDefend-ver_1.2.1-release.apk` 형식의 파일을 생성. 서명키와 Windows 사용자 계정으로 암호화한 비밀번호는 로컬 서명 폴더에 보관. 기본 경로는 Git에서 제외한 `release-signing`.
 
-BleScannerPoC 1.10.1 APK의 동작을 참고해 Java로 다시 만든 Android Studio 프로젝트입니다. 패키지 이름은 `com.glassesscanner`이고, 기존 GlassesScanner 1.1의 등록 이름과 UUID 설정을 유지합니다. Android 8.0(API 26) 이상을 지원 대상으로 설정했습니다.
+초기 스캔 유형과 검증 범위는 위 정책 적용.
 
-## 탐지 대상으로 등록
+### 2026-11-22 검증 기록
 
-탐색 대상 관리는 디바이스·계열별 카드 목록으로 표시합니다. 이름, 모델, UUID, 제조사 ID를 검색하거나 기본 등록·사용자 등록 필터를 선택할 수 있습니다. 기본 대상 카드는 상세 정보와 출처, 삭제 버튼을 표시하고 사용자 대상 카드는 수정·삭제 화면을 엽니다. 삭제 확인 후 목록과 등록 개수를 갱신하며, 삭제한 항목의 판별 기준은 다음 스캔부터 제외합니다. 다른 등록 기준에도 일치하는 기기는 후보로 표시될 수 있습니다.
+- 디버그·릴리스·계측 테스트 APK 빌드 성공, JVM 테스트 42건 통과, Android Lint 오류 없음.
+- Galaxy S24 Ultra / Android 17에서 계측 테스트 19건 통과. 태블릿 전용 1건·현재 불필요한 무선 설정 안내 조건 1건·별도 실행용 업그레이드 검사 2건은 조건에 따라 생략.
+- 기존 2.4 → 3.0 서명 업데이트 설치 성공. 별도 설치 전후 검사에서 기존 등록 설정 키와 완료된 이력 3건의 원본 값 보존 확인.
+- 스플래시 약 2초 표시, 새 런처 아이콘·상태 아이콘·다중 기기 선택·원시/일반 목록·경고·등록 관리·이력 이관·복구 설정 검증.
+- 실제 BLE 스캔 시작, 약 30초의 백그라운드 유지, 복귀 후 중지 확인. 장시간 배터리·Doze·제조사별 동작과 신규 모델별 실물 관측률은 별도 검증 항목.
 
-기본 카탈로그는 40개 제품·계열 항목을 포함합니다. **설정 → 탐색 대상 관리 → 기본 등록**에서 모델 목록, 식별 근거와 출처를 확인합니다. 공식 연결 이름, 공개 역공학 식별자, 제품명 기반 가설을 표시하며 실기 검증 상태를 구분합니다. 유선형 카탈로그 항목은 무선 식별자가 확보될 때까지 자동 판별 규칙이 없습니다. Bluetooth 이름에 `Glasses`가 포함되면 대소문자와 위치, 기기별 접미사에 관계없이 후보로 분류합니다. `Glasses_4097`은 관측 예시입니다. 기존 UUID 규칙은 이름과 독립적으로 적용됩니다.
+## 이미지
 
-결과 상세의 **탐색 대상으로 추가**에서 실제로 수신한 이름, 서비스 UUID, 제조사 ID를 선택할 수 있습니다. **설정 → 탐색 대상 관리**에서 직접 입력하거나 삭제할 수도 있습니다. 이름은 대소문자를 제외하고 전체가 일치해야 합니다. 제조사 ID나 공용 UUID는 다른 기기와도 일치할 수 있습니다.
-
-## 판별 근거
-
-공개 페어링 화면의 이름은 실제 BLE 광고나 Classic 검색 결과와 다를 수 있습니다. 제품명만 확인된 항목은 화면에 실기 검증 전으로 표시합니다. 광고를 받지 못하면 후보를 판별할 수 없습니다.
-
-| 규칙 | 근거 |
-| --- | --- |
-| Rokid Glass3 기업용 | [Rokid 검색 문서](https://x-docs.rokid.com/docs/en/faq/%E8%93%9D%E7%89%99%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5.html)의 이름 |
-| Rokid Glasses / Style | [Rokid Glasses](https://global.rokid.com/blogs/academy-glasses/2-4-connect-to-your-devices), [Style](https://global.rokid.com/en-hispano/blogs/academy-style/style-2-4-connect-to-your-devices) 페어링 목록 이름 |
-| Even G1 / G2 | [G1 공식 데모](https://github.com/even-realities/evendemoapp/blob/main/docs/G1_BLE_CONNECTION.en.md) 이름 형식 및 [G2 자료](https://hub.evenrealities.com/docs/get-started/quickstart/hardware)의 페어링 이름 |
-| Meta / Luxottica / Snap | [Bluetooth SIG](https://www.bluetooth.com/specifications/assigned-numbers/) 제조사 ID와 모델 이름 단서 |
-| Brilliant Labs Frame | [Frame SDK](https://github.com/brilliantlabsAR/frame-sdk-python)의 BLE 서비스 UUID |
-| HeyCyan | 기존 APK의 이름과 서비스 UUID |
-| Solos AirGo 3 / V | [Solos 페어링 안내](https://solosglasses.com/pages/general-frequently-asked-questions) |
-| Xiaomi Smart Audio Glasses | [Xiaomi 페어링 안내](https://www.mi.com/global/support/faq/details/KA-513031/) |
-| Razer Anzu | [Razer 페어링 안내](https://mysupport.razer.com/app/answers/detail/a_id/4167) |
-| Bose Frames | [Bose 사용자 매뉴얼](https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/wearables/bose_frames_soprano/pdf/856770_og_frames-soprano-tenor_en.pdf) |
-| Lucyd | [Lucyd 페어링 안내](https://help.lucyd.co/app-and-bluetooth/) |
-| Vuzix Z100/Blade, RayNeo X2/X3 Pro/iO, HUAWEI Eyewear, Amazon Echo Frames, Soundcore Frames | 공개 제품명 기반 후보. 광고 이름과 식별자는 실기 검증 전 |
-
-Android 11에서는 블루투스 또는 Wi-Fi, 위치 서비스, 앱 위치 권한을 켜고 스캔합니다. Rokid는 페어링 중과 평상시 연결 상태에서 각각 비교하세요. 실제 제품명과 관측된 이름, 제조사 ID, UUID가 있으면 `GlassesMatcher.java`에 규칙을 보강할 수 있습니다.
-
-
-## 2.1 Rokid 광고 판별과 화면
-
-광고 서비스 UUID 9100만 있으면 Rokid 계열 후보로 표시합니다. 같은 주소의 BLE 관측에 서비스 데이터 키 9A01도 들어오면 근거 2개로 표시합니다. 제조사 데이터와 서비스 데이터의 내용도 16진수로 수집하여 관측 이력에 저장합니다. 서비스 UUID와 서비스 데이터 UUID를 구분하며, 이전 이력도 계속 열 수 있습니다.
-
-화면은 BleScannerPoC APK의 헤더, 검색 조작부, 요약 카드, 무선 관측/신호 분석/이력/설정 메뉴를 기준으로 재구성했습니다.
-
-
-## 2.2 태블릿 화면 구성
-
-Galaxy Tab A의 BleScannerPoC 화면을 기준으로 메인 관측 화면, 신호 분석 팝업, 설정 메뉴를 맞췄습니다. 설정의 카메라 검사 항목은 촬영과 사진 보기를 지원합니다.
-
-
-## 2.3 일반 모드와 백그라운드 알림
-
-일반 모드는 스캔 시작, 중지, 목록 지우기 버튼만 표시합니다. 고급 스위치에서 나머지 조작과 전체 관측을 볼 수 있습니다. 스캔을 시작하면 포그라운드 서비스에서 계속 실행되며, 후보 발견 시 기기별로 스캔당 한 번 로컬 알림을 표시합니다. Android 13 이상에서 알림 권한을 허용해야 표시됩니다. 화면이 꺼져 있을 때는 앱이 미리 설정한 BLE 필터와 일치하는 광고가 검색 대상입니다.
+- 앱 아이콘: `app/src/main/res/drawable/ic_launcher_foreground.xml`. `#FEFEFE` 바탕에 `#00265B` AI_D 글자와 스캔 프레임, 초록색 표시점. Adaptive Icon 및 Android 시작 화면에 적용.
+- 스플래시: `app/src/main/res/drawable-nodpi/splash_radar.png`. 중앙 레이더 주위에 스마트글래스·카메라·워치·이어버드 배치. AI Defend 명칭과 회사 로고 및 문구 표시. 표시 시간 2초.
+- 제작: 내장 `imagegen` 사용. 스플래시는 기존 선택 디자인을 참조한 수정, 아이콘은 신규 생성. Android 런처 마스크에 맞춰 중앙 여백 확보.

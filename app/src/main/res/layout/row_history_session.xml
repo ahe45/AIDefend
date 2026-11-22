@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:padding="@dimen/space_medium">
+
+    <TextView android:id="@+id/history_card_legacy_title"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_small" android:textStyle="bold"
+        android:textColor="@color/on_surface" android:visibility="gone" />
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:baselineAligned="false">
+        <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/history_card_start_label" />
+        <TextView android:id="@+id/history_card_started" style="@style/Widget.DeviceGuard.ResultValue" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:baselineAligned="false" android:layout_marginTop="@dimen/space_small">
+        <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/history_card_end_label" />
+        <TextView android:id="@+id/history_card_ended" style="@style/Widget.DeviceGuard.ResultValue" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:baselineAligned="false" android:layout_marginTop="@dimen/space_small">
+        <TextView style="@style/Widget.DeviceGuard.ResultLabel" android:text="@string/scan" />
+        <TextView android:id="@+id/history_card_counts" style="@style/Widget.DeviceGuard.ResultValue" android:textStyle="bold" />
+    </LinearLayout>
+</LinearLayout>
